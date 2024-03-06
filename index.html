@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" type="text/css"
+        href="">
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        user-select: none;
+        background-image:url("ee.jpg");
+        
+    }
+
+    .container {
+        margin-left: 1.8em;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 5px 5px 10px #87ab69,
+            -5px -5px 10px #87ab69;
+            background-color: #75975e;
+    }
+
+    .content {
+        width: 100%;
+        margin-top: 1.7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row button {
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 1px 1px 4px #00000020,
+            -1px -1px 4px #ffff;
+    }
+
+    .row button:hover {
+        box-shadow: inset 1px 1px 4px rgba(16, 16, 16, .1),
+            inset -1px -1px 4px #8bca84;
+        background: #acd8a7;
+    }
+
+    .display #screen {
+        margin-bottom: .5em;
+        width: 280px;
+        height: 50px;
+        font-size: 25px;
+        outline: none;
+        border: none;
+        text-align: right;
+        padding-right: .5em;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #8bca84,
+            inset -8px -8px 8px #acd8a7;
+    }
+
+    #eval {
+        background: #72bf6a;
+        color: #fff;
+        box-shadow: inset 1px 1px 4px #8bca84,
+            inset -1px -1px 4px #acd8a7;
+    }
+
+    #eval:hover {
+        box-shadow: inset 1px 1px 4px #acd8a7,
+            inset -1px -1px 4px #acd8a7;
+    }
+
+    #ac {
+        background: #46923c;
+        color: #fff;
+        width: 135px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 1px 1px 4px #00000020,
+            -1px -1px 4px #ffff;
+    }
+
+    #ac:hover {
+        box-shadow: inset 1px 1px 4px #52a447,
+            inset -1px -1px 4px #5bb450;
+            
+    }
+
+    #ce {
+        background: #505c45;
+        color: #fff;
+        width: 135px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 1px 2px 4px #00000020,
+            -1px -1px 4px #ffff;
+    }
+
+    #ce:hover {
+        box-shadow: inset 5px 5px 8px #667558,
+            inset -5px -5px 8px #7B8D6A;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="display">
+            <input id="screen" type="text" placeholder="">
+        </div>
+
+        <div class="btns">
+            <div class="">
+                <td rowspan="2"> <button id="ce" onclick="backspc()">DEL</button></td>
+                <button id="ac" onclick="screen.value=''">C</button>
+            </div>
+
+            <div class="row">
+
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">÷</button>
+            </div>
+
+            <div class="row">
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+            </div>
+
+            <div class="row">
+
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">-</button>
+            </div>
+
+            <div class="row">
+
+                <button class="btn">0</button>
+                <button class="btn">00</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+                <button class="btn">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var screen = document.querySelector('#screen');
+    var btn = document.querySelectorAll('.btn');
+
+   
+    for (item of btn) {
+        item.addEventListener('click', (e) => {
+            btntext = e.target.innerText;
+
+            if (btntext == '×') {
+                btntext = '*';
+            }
+
+            if (btntext == '÷') {
+                btntext = '/';
+            }
+            screen.value += btntext;
+        });
+    }
+
+
+    function backspc() {
+        screen.value = screen.value.substr(0, screen.value.length - 1);
+    }
+</script>
+
+</html>
